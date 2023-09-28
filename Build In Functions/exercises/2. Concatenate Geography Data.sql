@@ -1,9 +1,11 @@
 CREATE VIEW view_continents_countries_currencies_details AS
-SELECT 
-	CONCATE_WS(': ',continent_name, continent_name) AS "Continent Details"
-	FROM continents
-	CONCATE_WS(' - ', country_name, capital, area_in_sq_km, 'km2') AS "Country Information"
-	FROM countries
-	CONCATE_WS(' ',FORMAT(description(currency_code))) AS "Currencies"
-	FROM currencies
-ORDER BY "Country Information" ,"Currencies" ;
+SELECT
+	CONCAT_WS(': ', con.continent_name, con.continent_code) AS "Continent Details",
+	CONCAT_WS(' - ', cou.country_name, cou.capital, cou.area_in_sq_km, 'km2') AS "Country Information",
+	CONCAT(cur.description, '(', cur.currency_code, ')') AS "Currencies"
+	
+FROM 
+	continents AS con,
+	countries AS cou,
+	currencies AS cur
+ORDER BY "Country Information", "Currencies";
