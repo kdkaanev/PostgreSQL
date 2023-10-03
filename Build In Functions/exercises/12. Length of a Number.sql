@@ -1,6 +1,6 @@
 SELECT
 	population,
-	LENGTH(CAST(population AS VARCHAR))
-FROM 
+	LENGTH(CAST(population AS VARCHAR)) 
+FROM
 	countries;
 	
